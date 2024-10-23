@@ -1,7 +1,7 @@
 
-# Base App
+# RN CAST LOCAL HTTP
 
-Welcome to my Base App! This project is built using Expo, a framework for building React Native applications.
+Welcome to my RN CAST LOCAL HTTP App! This project is built using Expo, a framework for building React Native applications.
 
 ## Getting Started
 
@@ -17,13 +17,13 @@ Before you begin, make sure you have the following installed on your machine:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/noahschwagele/base-app.git
+git clone https://github.com/noahschwagele/rn-cast-local-http.git
 ```
 
 ### Navigate to the Project Directory
 
 ```bash
-cd base-app
+cd rn-cast-local-http
 ```
 
 ### Install Dependencies

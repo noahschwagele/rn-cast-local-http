@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "base-app",
-    "slug": "base-app",
+    "name": "rn-cast-local-http",
+    "slug": "rn-cast-local-http",
     "version": "1.0.0",
     "orientation": "both",
     "icon": "./assets/icon.png",

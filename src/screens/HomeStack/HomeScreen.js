@@ -10,7 +10,7 @@ const HomeScreen = ({ navigation, route }) => {
       {/* <Avatar.Image size={100} source={require('./assets/profile.jpg')} /> */}
         <View style={styles.container}>
             <Text variant='headlineMedium'>Welcome to</Text>
-            <Text variant='headlineMedium'>Base-app</Text>
+            <Text variant='headlineMedium'>rn-cast-local-http</Text>
         </View>
     </View>
   );
