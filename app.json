@@ -18,8 +18,7 @@
           "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
         }
       ],
-      "react-native-google-cast",
-      ["expo-build-properties", { "ios": { "deploymentTarget": "14.0" } }]
+      "react-native-google-cast"
     
     ],
     "assetBundlePatterns": [

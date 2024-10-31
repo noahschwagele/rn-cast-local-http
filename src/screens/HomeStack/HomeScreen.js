@@ -1,7 +1,6 @@
 import * as server from "@kccd/expo-http-server";
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
-import * as Network from "expo-network";
 
 export default function App() {
   const [lastCalled, setLastCalled] = useState();
@@ -12,7 +11,7 @@ export default function App() {
 	<!DOCTYPE html>
 	<html>
 		<body style="background-color:powderblue;">
-			<h1>expo-http-server</h1>
+			<h1>expo-http-server1</h1>
 			<p>You can load HTML!</p>
 		</body>
 	</html>`;
@@ -21,13 +20,6 @@ export default function App() {
 
   useEffect(() => {
     // Get the local IP address
-    const getIpAddress = async () => {
-      const networkInfo = await Network.getIpAddressAsync();
-      setIpAddress(networkInfo);
-    };
-
-    getIpAddress();
-
     // Setup the server
     server.setup(port, (event: server.StatusEvent) => {
       if (event.status === "ERROR") {
@@ -79,9 +71,6 @@ export default function App() {
         justifyContent: "center",
       }}
     >
-      <Text>
-        {ipAddress ? `Server running at http://${ipAddress}:${port}` : "Loading IP address..."}
-      </Text>
       <Text>
         {lastCalled === undefined
           ? "Request webserver to change text"
