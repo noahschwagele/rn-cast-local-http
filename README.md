@@ -50,6 +50,16 @@ Now that you have cloned the repository and installed the dependencies, you can 
 expo start
 ```
 
+Once App is launched and running you can access the local server
+For JSON
+```
+<device ip>:9666
+```
+For HTML
+```
+<device ip>:9666/html
+```
+
 This will open the Expo Developer Tools in your default web browser. You can then choose to run the app on an emulator or scan the QR code with the Expo Go app on your mobile device.
 
 For more details on running Expo projects, refer to the [Expo documentation](https://docs.expo.dev/get-started/installation/).
@@ -57,6 +67,7 @@ For more details on running Expo projects, refer to the [Expo documentation](htt
 ## Customize and Build
 
 Feel free to customize the app according to your needs. You can edit the source files in the `src` directory and make any necessary changes.
+Webser is running in `src/screens/HomeStack/HomeScreen.js`
 
 ## License
 
