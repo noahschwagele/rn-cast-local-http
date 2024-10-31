@@ -3,7 +3,7 @@
     "name": "rn-cast-local-http",
     "slug": "rn-cast-local-http",
     "version": "1.0.0",
-    "orientation": "both",
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -17,7 +17,10 @@
         {
           "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
         }
-      ]
+      ],
+      "react-native-google-cast",
+      ["expo-build-properties", { "ios": { "deploymentTarget": "14.0" } }]
+    
     ],
     "assetBundlePatterns": [
       "**/*"
@@ -29,10 +32,20 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.noahschwagele.rncastlocalhttp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4af8962a-70c0-4477-8175-4ee85b1f0326"
+      }
     }
   }
 }

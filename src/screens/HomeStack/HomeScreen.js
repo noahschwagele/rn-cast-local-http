@@ -1,42 +1,93 @@
-// ProfileScreen.js
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Text, Card , Button} from 'react-native-paper';
+import * as server from "@kccd/expo-http-server";
+import { useEffect, useState } from "react";
+import { Text, View } from "react-native";
+import * as Network from "expo-network";
 
-const HomeScreen = ({ navigation, route }) => {
-  const {logout} = route.params;
+export default function App() {
+  const [lastCalled, setLastCalled] = useState();
+  const [ipAddress, setIpAddress] = useState();
+  const port = 9666;
+
+  const html = `
+	<!DOCTYPE html>
+	<html>
+		<body style="background-color:powderblue;">
+			<h1>expo-http-server</h1>
+			<p>You can load HTML!</p>
+		</body>
+	</html>`;
+
+  const obj = { app: "expo-http-server", desc: "You can load JSON!" };
+
+  useEffect(() => {
+    // Get the local IP address
+    const getIpAddress = async () => {
+      const networkInfo = await Network.getIpAddressAsync();
+      setIpAddress(networkInfo);
+    };
+
+    getIpAddress();
+
+    // Setup the server
+    server.setup(port, (event: server.StatusEvent) => {
+      if (event.status === "ERROR") {
+        console.error("1", event);
+      } else {
+        console.error("2", event);
+      }
+    });
+
+    // Define routes
+    server.route("/", "GET", async (request) => {
+      console.log("Request", "/", "GET", request);
+      setLastCalled(Date.now());
+      return {
+        statusCode: 200,
+        headers: {
+          "Custom-Header": "Bazinga",
+        },
+        contentType: "application/json",
+        body: JSON.stringify(obj),
+      };
+    });
+
+    server.route("/html", "GET", async (request) => {
+      console.log("Request", "/html", "GET", request);
+      setLastCalled(Date.now());
+      return {
+        statusCode: 200,
+        statusDescription: "OK - CUSTOM STATUS",
+        contentType: "text/html",
+        body: html,
+      };
+    });
+
+    // Start the server
+    server.start();
+
+    return () => {
+      server.stop();
+    };
+  }, []);
+
   return (
-    <View style={styles.container}>
-      {/* <Avatar.Image size={100} source={require('./assets/profile.jpg')} /> */}
-        <View style={styles.container}>
-            <Text variant='headlineMedium'>Welcome to</Text>
-            <Text variant='headlineMedium'>rn-cast-local-http</Text>
-        </View>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Text>
+        {ipAddress ? `Server running at http://${ipAddress}:${port}` : "Loading IP address..."}
+      </Text>
+      <Text>
+        {lastCalled === undefined
+          ? "Request webserver to change text"
+          : "Called at " + new Date(lastCalled).toLocaleString()}
+      </Text>
     </View>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    // paddingHorizontal: 20,
-    margin: 15
-  },
-  username: {
-    fontSize: 20,
-    marginVertical: 10,
-  },
-  card: {
-    marginVertical: 20,
-    width: '100%',
-  },
-  button: {
-    width: '100%',
-    borderRadius: 5,
-    marginTop: 10,
-  },
-});
-
-export default HomeScreen;

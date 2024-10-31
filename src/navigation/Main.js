@@ -55,7 +55,7 @@ const App = () => {
     // This effect will run whenever userToken changes
     if (userToken === null) {
       // User is not logged in, navigate to the login screen
-      navigation.navigate('Login');
+      // navigation.navigate('Login');
     }
   }, [userToken, navigation]);
 
@@ -66,19 +66,7 @@ const App = () => {
 
   return (
     <Stack.Navigator>
-      {userToken == null ? (
-        // No token found, user isn't signed in
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{
-            title: 'Login',
-            headerShown: false,
-          }}
-          initialParams={{ setUserToken, setUserDetails, setUserRole }}
-        />
-      ) : (
-        // Driver Screens
+
         <Stack.Screen
           name="BottomTabs"
           component={BottomTabs}
@@ -92,7 +80,6 @@ const App = () => {
           }}
           initialParams={{ userToken, userDetails, userRole, setUserToken, logout }}
         />
-        )}
       
     </Stack.Navigator>
   );
